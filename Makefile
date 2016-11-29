@@ -1,4 +1,4 @@
-TARGET= aagaProject
+TARGET= aaga
 
 SRCDIR= ./src
 OBJDIR= ./obj
@@ -17,20 +17,29 @@ OBJECTS := $(SOURCES:$(SRCDIR)/%.c=$(OBJDIR)/%.o)
 
 rm = rm -f
 
+all: $(OBJECTS) $(TARGET)
+
+$(TARGET): $(BINDIR)/$(TARGET)
+
 $(BINDIR)/$(TARGET): $(OBJECTS)
 	@$(LINKER) $@ $(OBJECTS) $(LFLAGS) 2>>log 
-	@echo "\033[32mLinking complete!\033[39m"
+	@echo -e "\e[32mLinking complete!\e[0m"
+	@echo -e Compiling Complete! >> log
 
 $(OBJECTS): $(OBJDIR)/%.o : $(SRCDIR)/%.c
 	@$(CC) $(CFLAGS) -c $< -o $@ 2>>log
-	@echo "\033[33mCompiled "$<" successfully!\033[39m"
+	@echo -e "\e[34mCompiled "$<" successfully!\e[0m"
 
-.PHONEY: clean
-clean:
+.PHONEY: clean remove clear_log
+
+clear_log:
+	@rm log
+	@echo -e "\e[33mLog removed!\e[0m"
+
+clean:  clear_log
 	@$(rm) $(OBJECTS)
-	@echo "\033[32mCleanup complete!\033[39m"
+	@echo -e "\e[33mCleanup complete!\e[0m"
 
-.PHONEY: remove
 remove: clean
 	@$(rm) $(BINDIR)/$(TARGET)
-	@echo "\033[31mExecutable removed!\033[39m"
+	@echo -e "\e[31mExecutable removed!\e[0m"

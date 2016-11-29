@@ -5,9 +5,11 @@
 /* We use Knuth & Lewis generator (from Seminumerical Algorithms) */
 long m = 4294967296; // 2^32
 long x_n;
+
 void init_random() {
   x_n = time(NULL) % m;
 }
+
 long rand_int(long upper_bound) {
   int a = 1664525;
   int c = 1013904223;
