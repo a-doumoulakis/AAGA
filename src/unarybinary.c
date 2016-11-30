@@ -97,10 +97,12 @@ UB *remyGeneration(int size) {
     }
     tree_weight += 2;
   }
-
   return node[0];
 }
 
 int main(void) {
+  printf("rand : %ld\n", rand_int(5));
+  printf("rand : %ld\n", rand_int(10));
+  printf("No bits : %ld\n", get_rand_bits());
   return EXIT_SUCCESS;
 }

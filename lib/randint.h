@@ -5,4 +5,6 @@ void init_random();
 
 long rand_int(long upper_bound);
 
+long get_rand_bits();
+
 #endif
