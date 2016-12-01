@@ -5,7 +5,6 @@ typedef struct ub_node {
   struct ub_node *child[2];
 } UB;
 
-UB *remyGeneration(int size);
-
+UB* remyGeneration(int size);
 
 #endif

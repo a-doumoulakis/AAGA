@@ -6,10 +6,10 @@ LIBDIR= ./lib
 BINDIR = ./bin
 
 CC = gcc
-CFLAGS = -Wall -Wextra -Wimplicit -std=c11 
+CFLAGS = -Wall -Wextra -Wimplicit -std=c11 -g
 
 LINKER = gcc -o
-LFLAGS = -Wall -lm
+LFLAGS = -Wall -lm -lgmp
 
 
 SOURCES := $(wildcard $(SRCDIR)/*.c)
@@ -24,9 +24,10 @@ $(TARGET): $(BINDIR)/$(TARGET)
 
 $(BINDIR)/$(TARGET): $(OBJECTS)
 	@mkdir -p $(BINDIR)
-	@$(LINKER) $@ $(OBJECTS) $(LFLAGS) 2>>log 
-	@echo -e "\e[32mLinking complete!\e[0m"
+	@$(LINKER) $@ $(OBJECTS) $(LFLAGS) 2>> log 
+	@if [ -s ./log ]; then echo -e "\e[33mErrors or warnings present!\e[0m"; fi;
 	@echo -e Compiling Complete! >> log
+	@echo -e "\e[32mLinking complete!\e[0m"
 
 $(OBJECTS): $(OBJDIR)/%.o : $(SRCDIR)/%.c
 	@mkdir -p $(OBJDIR)
@@ -36,13 +37,14 @@ $(OBJECTS): $(OBJDIR)/%.o : $(SRCDIR)/%.c
 .PHONEY: clean remove clear_log
 
 clear_log:
+	@echo ""
 	@rm -f log
-	@echo -e "\e[33mLog removed!\e[0m"
 
 clean:  clear_log
 	@$(rm) $(OBJECTS)
-	@echo -e "\e[33mCleanup complete!\e[0m"
+	@echo -e "\e[33mLog and object files cleanup complete!\e[0m"
 
 remove: clean
 	@$(rm) $(BINDIR)/$(TARGET)
 	@echo -e "\e[31mExecutable removed!\e[0m"
+	@echo ""

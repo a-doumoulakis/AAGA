@@ -25,11 +25,11 @@ long get_rand_bits(){
   return ran_bits;
 }
 
-
-// int main(void) {
-//   init_random();
-//   for(int i = 0; i < 10; i++) {
-//     printf("%ld \n", rand_int(100000L));
-//   }
-//   return EXIT_SUCCESS;
-// }
+/*
+int main(void) {
+   init_random();
+   for(int i = 0; i < 10; i++) {
+     printf("%ld \n", rand_int(100000L));
+   }
+   return EXIT_SUCCESS;
+ }*/

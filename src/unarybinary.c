@@ -1,10 +1,10 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <time.h>
+
 #include "../lib/randint.h"
 #include "../lib/unarybinary.h"
 
-UB *remyGeneration(int size) {
+UB* remyGeneration(int size) {
   if(size <= 0) return NULL;
   //Container that provides efficient access to labelled node
   UB **node = (UB **)malloc(sizeof(UB*) * (size+1));
@@ -100,9 +100,8 @@ UB *remyGeneration(int size) {
   return node[0];
 }
 
-int main(void) {
-  printf("rand : %ld\n", rand_int(5));
-  printf("rand : %ld\n", rand_int(10));
-  printf("No bits : %ld\n", get_rand_bits());
+/*int main(void) {
+  UB* res = remyGeneration(5);
+  
   return EXIT_SUCCESS;
-}
+}*/
