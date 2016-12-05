@@ -3,17 +3,19 @@
 
 #include "../lib/randint.h"
 #include "../lib/unarybinary.h"
+#include "../lib/randint.h"
+
 
 UB* remyGeneration(int size) {
   if(size <= 0) return NULL;
   //Container that provides efficient access to labelled node
-  UB **node = (UB **)malloc(sizeof(UB*) * (size+1));
+  UB** node = malloc(sizeof(UB*) * (size+1));
   //Keep tracks of parents
-  UB **parent = (UB **)malloc(sizeof(UB*) * (size+1));
+  UB** parent = malloc(sizeof(UB*) * (size+1));
   //We allocate each node
   int i;
   for(i=1; i<size+1; i++) {
-    node[i] = (UB *)malloc(sizeof(UB));
+    node[i] = malloc(sizeof(UB));
     if(node[i]==NULL) { fprintf(stderr,"allocation error"); exit(EXIT_FAILURE); }
     node[i]->child[0] = NULL;
     node[i]->child[1] = NULL;
