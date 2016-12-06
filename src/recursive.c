@@ -5,6 +5,7 @@
 #include "../lib/randint.h"
 #include "../lib/unarybinary.h"
 #include "../lib/randint.h"
+#include "../lib/print.h"
 
 
 mpz_t* array_catalan;
@@ -55,7 +56,7 @@ UB* recursive_generation(int size){
     gmp_printf("i = %i, j = %i, val = %Zd\n", i, n_i, dec_n[i]);
     n_i--;
   }
-  
+
   i = 0;
   while(mpz_cmp_ui(*r, 0) > 0){
     mpz_sub(*r, *r, dec_n[i]);
@@ -70,7 +71,7 @@ UB* recursive_generation(int size){
   for(i = 0; i < size-1; i++) mpz_clear(dec_n[i]);
   free(dec_n);
   free(r);
-  
+
   result -> child[0] = recursive_generation(size_l);
   result -> child[1] = recursive_generation(size-(size_l+1));
   return result;
@@ -86,7 +87,7 @@ int main(int argc, char* argv[]){
   init_mpz();
   cat_mpz_array(size);
   UB* tree = recursive_generation(size);
-
+  print(tree, "essai.dot");
   free_tree(tree);
   free_mpz_array(array_catalan, size);
   clear_mpz();
