@@ -34,3 +34,8 @@ bin/
 *.dSYM/
 *.su
 log
+
+# OUTPUT FILES
+*.pdf
+*.dot
+
