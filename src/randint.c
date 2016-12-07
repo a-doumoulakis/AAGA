@@ -29,6 +29,9 @@ long rand_int(long upper_bound) {
 
 void init_mpz(){
   gmp_randinit_default(r_state);
+  long seed;
+  time(&seed);
+  gmp_randseed_ui(r_state, seed);
 }
 
 void clear_mpz(){
@@ -36,17 +39,17 @@ void clear_mpz(){
 }
 
 mpz_t* rand_mpz(mpz_t* upper_bound){
-  mpz_t* result = malloc(sizeof(mpz_t)); 
-  mpz_t tmp;
+  mpz_t* result = malloc(sizeof(mpz_t));
+  //mpz_t tmp;
 
   /*TODO calculer log de upper_bound pour ajouter au nombre de bit aleatoires requis*/
   mpz_init(*result);
-  mpz_init_set(tmp, *upper_bound);
-  mpz_add_ui(tmp, tmp, 1);
+  //mpz_init_set(tmp, *upper_bound);
+  //mpz_add_ui(tmp, tmp, 1);
 
   //gmp_printf("upper: %Zd | %Zd\n", *upper_bound, tmp);
 
-  mpz_urandomm(*result, r_state, tmp);
+  mpz_urandomm(*result, r_state, *upper_bound);
 
   //gmp_printf("res: %Zd \n", *result);
   return result;

@@ -33,6 +33,7 @@ UB* remyGeneration(int size) {
 
   //Algorithm
   for(i=1; i<size; i++) {
+    puts("yolo\n");
     //Pick a k integer between 1 and total_weight
     k = rand_int(tree_weight) +1;
     //Find the associate node
@@ -104,6 +105,6 @@ UB* remyGeneration(int size) {
 
 /*int main(void) {
   UB* res = remyGeneration(5);
-  
+
   return EXIT_SUCCESS;
 }*/

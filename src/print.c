@@ -4,7 +4,6 @@
 #include "../lib/print.h"
 
 void print(UB* tree, char* name) {
-  printf("BEGIN PRINT FUNCTION");
   FILE *f = fopen(name, "w");
   if (f == NULL)
   {
@@ -21,17 +20,20 @@ void print(UB* tree, char* name) {
 
   while(!empty(treeStack)) {
     int ind = *(int*)pop(stack);
-    printf("ind : %d\n", ind);
     UB* node = pop(treeStack);
     if(node->child[0]!=NULL) {
-      *label+=1;
+      int k =*label+1;
+      label = (int*)malloc(sizeof(int));
+      *label = k;
       push(stack, label);
       push(treeStack, node->child[0]);
       fprintf(f, "%d -> %d\n", ind, *label);
     }
 
     if(node->child[1]!=NULL) {
-      *label+=1;
+      int k =*label+1;
+      label = (int*)malloc(sizeof(int));
+      *label = k;
       push(stack, label);
       push(treeStack, node->child[1]);
       fprintf(f, "%d -> %d\n", ind, *label);
