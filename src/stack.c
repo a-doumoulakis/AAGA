@@ -51,10 +51,8 @@ void* pop(Stack* stack) {
 }
 
 void* peek(Stack* stack) {
-  if(stack!=NULL && stack->top>=0)
-    return stack->data[stack->top];
-
-    return NULL;
+  if(stack!=NULL && (stack->top >= 0)) return stack->data[stack->top];
+  return NULL;
 }
 
 int push(Stack *stack, void*  data) {
