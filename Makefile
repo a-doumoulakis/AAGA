@@ -3,7 +3,8 @@ TARGET= aaga
 SRCDIR= ./src
 OBJDIR= ./obj
 LIBDIR= ./lib
-BINDIR = ./bin
+BINDIR= ./bin
+DOTDIR= ./dot
 
 CC = gcc
 CFLAGS = -Wall -Wextra -Wimplicit -std=c11 -g
@@ -15,6 +16,8 @@ LFLAGS = -Wall -lm -lgmp
 SOURCES := $(wildcard $(SRCDIR)/*.c)
 INCLUDES := $(wildcard $(SRCDIR)/*.h)
 OBJECTS := $(SOURCES:$(SRCDIR)/%.c=$(OBJDIR)/%.o)
+
+DOTFILE= tree
 
 rm = rm -f
 
@@ -34,7 +37,8 @@ $(OBJECTS): $(OBJDIR)/%.o : $(SRCDIR)/%.c
 	@$(CC) $(CFLAGS) -c $< -o $@ 2>>log
 	@echo -e "\e[34mCompiled "$<" successfully!\e[0m"
 
-.PHONEY: clean remove clear_log
+
+.PHONEY: clean remove clear_log ps_dot
 
 clear_log:
 	@echo ""
@@ -46,5 +50,12 @@ clean:  clear_log
 
 remove: clean
 	@$(rm) $(BINDIR)/$(TARGET)
-	@echo -e "\e[31mExecutable removed!\e[0m"
+	@$(rm) $(DOTDIR)/*
+	@echo -e "\e[31mExecutable and Generated files removed!\e[0m"
 	@echo ""
+
+ps_dot:
+	if [ ! -f $(DOTDIR)/$(DOTFILE).dot ];\
+	then echo -e "\e[31mDOT file does not exist\e[0m";\
+	else dot -Tps $(DOTDIR)/$(DOTFILE).dot -o $(DOTDIR)/$(DOTFILE).ps;\
+	fi;
