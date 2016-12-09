@@ -40,30 +40,12 @@ void clear_mpz(){
 
 mpz_t* rand_mpz(mpz_t* upper_bound){
   mpz_t* result = malloc(sizeof(mpz_t));
-  //mpz_t tmp;
-
-  /*TODO calculer log de upper_bound pour ajouter au nombre de bit aleatoires requis*/
   mpz_init(*result);
-  //mpz_init_set(tmp, *upper_bound);
-  //mpz_add_ui(tmp, tmp, 1);
-
-  //gmp_printf("upper: %Zd | %Zd\n", *upper_bound, tmp);
 
   mpz_urandomm(*result, r_state, *upper_bound);
-
-  //gmp_printf("res: %Zd \n", *result);
   return result;
 }
 
 long get_rand_bits(){
   return ran_bits;
 }
-
-/*
-int main(void) {
-   init_random();
-   for(int i = 0; i < 10; i++) {
-     printf("%ld \n", rand_int(100000L));
-   }
-   return EXIT_SUCCESS;
- }*/

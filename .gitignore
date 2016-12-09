@@ -1,3 +1,4 @@
+
 # Object files
 *.o
 *.ko
@@ -38,4 +39,4 @@ log
 # OUTPUT FILES
 *.pdf
 *.dot
-
+dot/
