@@ -49,7 +49,8 @@ UB* recursive_generation(int size){
     result -> child[1] -> child[1] = NULL;
     return result;
   }
-  mpz_t* r = rand_mpz(array_catalan+(size)); /* or -1 */
+  
+  mpz_t* r = rand_mpz(array_catalan+(size));
   mpz_t* dec_n = malloc((sizeof(mpz_t) * size));
   int i;
   int n_i;
