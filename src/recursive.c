@@ -74,7 +74,7 @@ UB* recursive_generation(int size){
   //gmp_printf("REC: %Zd | %i -- %i\n", *r, size_l, size-(size_l+1));
 
   mpz_clear(*r);
-  for(i = 0; i < size-1; i++) mpz_clear(dec_n[i]);
+  for(i = 0; i < size; i++) mpz_clear(dec_n[i]);
   free(dec_n);
   free(r);
 
@@ -91,10 +91,10 @@ int main(int argc, char* argv[]){
   size = strtoul(argv[1], NULL, 10);
   if(size <= 0) return EXIT_FAILURE;
 
-UB* tree = remyGeneration(size);
-print(tree, "remy.dot");
+//UB* tree = remyGeneration(size);
+//print(tree, "remy.dot");
 
-/*
+
   init_mpz();
   cat_mpz_array(size);
   //for(int i =0; i<size; i++) gmp_printf("%d -> %Zd\n", i, array_catalan[i]);
@@ -102,7 +102,7 @@ print(tree, "remy.dot");
   print(tree, "essai.dot");
   free_tree(tree);
   free_mpz_array(array_catalan, size);
-  clear_mpz();*/
+  clear_mpz();
   /*
   UB* tree2 = malloc(sizeof(UB));
   tree2->child[0] = malloc(sizeof(UB));
