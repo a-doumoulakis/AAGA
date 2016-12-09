@@ -49,7 +49,7 @@ UB* recursive_generation(int size){
     result -> child[1] -> child[1] = NULL;
     return result;
   }
-  mpz_t* r = rand_mpz(array_catalan+(size-1));
+  mpz_t* r = rand_mpz(array_catalan+(size)); /* or -1 */
   mpz_t* dec_n = malloc((sizeof(mpz_t) * size));
   int i;
   int n_i;
@@ -84,6 +84,7 @@ int main(int argc, char* argv[]){
 
   size = strtoul(argv[1], NULL, 10);
   if(size <= 0) return EXIT_FAILURE;
+
   cat_mpz_array(size);
   init_mpz();
   UB* tree = recursive_generation(size);
