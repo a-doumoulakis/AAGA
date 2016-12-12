@@ -15,6 +15,10 @@ Stack* create() {
   return create_with_size(INITIAL_STACK_SIZE);
 }
 
+void freeStack(Stack* stack){
+    free(stack -> data);
+    free(stack);
+}
 
 int empty(Stack* stack) {
    return (stack->top==-1) ? 1 : 0;

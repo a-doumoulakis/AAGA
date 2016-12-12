@@ -1,6 +1,6 @@
 TARGET= aaga
 
-ARG= 1000
+SIZE= 1000
 
 SRCDIR= ./src
 OBJDIR= ./obj
@@ -40,9 +40,10 @@ $(OBJECTS): $(OBJDIR)/%.o : $(SRCDIR)/%.c
 	@echo -e "\e[34mCompiled "$<" successfully!\e[0m"
 
 run: $(BINDIR)/$(TARGET)
-	@./$(BINDIR)/$(TARGET) $(ARG) $(DOTDIR)/$(DOTFILE).dot
+	@echo -e "\e[33mGenerating PDF from DOT\e[0m"
+	@./$(BINDIR)/$(TARGET) $(SIZE) $(DOTDIR)/$(DOTFILE).dot
 	@dot -Tpdf $(DOTDIR)/$(DOTFILE).dot -o $(DOTDIR)/$(DOTFILE).pdf;
-	@echo -e "\e[34mTree Structure generated !\e[0m"
+	@echo -e "\e[32mPDF generation done!\e[0m"
 
 .PHONEY: clean remove clear_log ps_dot
 
@@ -60,8 +61,10 @@ remove: clean
 	@echo -e "\e[31mExecutable and Generated files removed!\e[0m"
 	@echo ""
 
-pdf: 
-	if [ ! -f $(DOTDIR)/$(DOTFILE).dot ];\
+pdf:
+	@echo -e "\e[33mGenerating PDF from DOT\e[0m"
+	@if [ ! -f $(DOTDIR)/$(DOTFILE).dot ];\
 	then echo -e "\e[31mDOT file does not exist\e[0m";\
 	else dot -Tpdf $(DOTDIR)/$(DOTFILE).dot -o $(DOTDIR)/$(DOTFILE).pdf;\
 	fi;
+	@echo -e "\e[32mPDF generation done!\e[0m"

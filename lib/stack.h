@@ -12,6 +12,7 @@ typedef struct stack_t Stack;
 
 Stack* create();
 Stack* create_with_size(int initial_size);
+void freeStack(Stack* stack);
 int empty(Stack* stack);
 int full(Stack* stack);
 int resize(Stack* stack);
